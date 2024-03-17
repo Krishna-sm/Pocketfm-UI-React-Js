@@ -1,33 +1,44 @@
+/* import fonts */
+
+@import url("../styles/fonts.css");
+@import url("../styles/colors.css");
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+html::-webkit-scrollbar{
+  width: 2px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+
+::selection{
+  color: white;
+  background-color: var(--selection-color);
+}
+*{
+  font-family: JostRegular ;
+  /* background: var(--main-color) ; */
+
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+#video-list::-webkit-scrollbar{
+  display: none;
+}
+#chat-list{
+  scroll-behavior: smooth;
+}
+#chat-list::-webkit-scrollbar{
+  display: none;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+#content::-webkit-scrollbar{
+  width: 10px;
+  background-color: transparent;
+}
+
+#content::-webkit-scrollbar-thumb{
+  background-color: var(--selection-color);
 }
