@@ -138,7 +138,7 @@ const EditPage = ({params}:{params:{slug:string}}) => {
               </Formik>
 
         <div className=" w-[30%] md:w-[30%] mx-auto min-h-28 shadow-md py-5  rounded-lg">
-          <img src={data?.novel?.image?.uri} alt={variable} />
+          <img src={data?.novel?.image?.uri} alt={`${variable}`} />
         </div>
       </div>
     </>
