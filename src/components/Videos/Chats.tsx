@@ -70,7 +70,7 @@ export const ChatCard = ({ id, username, comment, date }: { id: number, username
    
             const[isShow,setIsShow] = useState(false)
    return <>
-        <div id={id} className="card flex items-start w-full px-5 py-4 border-b  relative">
+        <div id={`${id}`} className="card flex items-start w-full px-5 py-4 border-b  relative">
             <div className="w-[100px]">
                 <img src="https://png.pngtree.com/png-vector/20191101/ourmid/pngtree-cartoon-color-simple-male-avatar-png-image_1934459.jpg" className="w-[100px] rounded-full " alt="" />
             </div>

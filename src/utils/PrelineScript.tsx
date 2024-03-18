@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { IStaticMethods } from "preline/preline";
 declare global {
     interface Window {
-        HSStaticMethods: IStaticMethods;
+        HSStaticMethods: HSStaticMethods;
     }
 }
 

@@ -1,6 +1,6 @@
 "use client";
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import React, { useRef, useState } from 'react'
+import React, {    MutableRefObject, useRef, useState } from 'react'
 import * as yup from 'yup'
 import { CiHeadphones } from "react-icons/ci";
 import { toast } from 'sonner';
@@ -16,7 +16,7 @@ const ContactPage = () => {
       token: yup.string().required("token is required"),
     }) 
 
-  const recaptcha = useRef<ReCAPTCHA>();
+  const recaptcha = useRef<any>();
     const initialValues = {
         name:'',
         email:'',
@@ -77,7 +77,7 @@ const ContactPage = () => {
                     }} sitekey={process.env.NEXT_PUBLIC_SITE_KEY as string} />
                   </div>
                   <div className="mb-3 px-2 ">
-                    {values.token && <button disabled={AddContactResponse.isLoading} type='submit' className=' text-lg transition-all duration-300 inline-flex justify-center items-center   gap-x-4 items-center border rounded-lg px-5 py-2 w-full text-center bg-[--selection-color] text-white'> Submit {AddContactResponse.isLoading? <><CgSpinner className="text-2xl text-white animate-spin" /></>:<></>} </button>}
+                    {values.token && <button disabled={AddContactResponse.isLoading} type='submit' className=' text-lg transition-all duration-300 inline-flex justify-center items-center   gap-x-4   border rounded-lg px-5 py-2 w-full text-center bg-[--selection-color] text-white'> Submit {AddContactResponse.isLoading? <><CgSpinner className="text-2xl text-white animate-spin" /></>:<></>} </button>}
                   </div>
                         </form>
                             )}
