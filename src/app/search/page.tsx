@@ -36,9 +36,7 @@ const SearchPage = async({ searchParams }: { searchParams :{query:string}}) => {
   let data: dataProp ={} ;
         if(searchParams.query){
           const res = await fetch(SearchUrl(`/public/search?query=${searchParams.query}`),{
-            next: {
-              revalidate: 3600
-            }
+           cache:'no-store'
           })
           data = await res.json()
         }

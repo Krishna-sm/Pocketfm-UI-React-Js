@@ -8,9 +8,7 @@ import ErrorComponent from '@/components/ErrorComponent'
 const NovelPage = async({ params }:{params:{slug:string}}) => {
 
   const res = await fetch(SearchUrl(`/public/novel/${params.slug}`),{
-    next:{
-      revalidate:600
-    }
+   cache:'no-store'
   })
 
   const data = await res.json()

@@ -2,6 +2,7 @@ import ErrorComponent from '@/components/ErrorComponent'
 import Hero from '@/components/Home/Hero'
 import { Loader } from '@/components/Loader'
 import axios from 'axios'
+import { revalidatePath } from 'next/cache'
 // import NovelsComponents from 
 const NovelsComponents = lazy(() => import('@/components/Home/Novels'))
 import React, { Suspense, lazy } from 'react' 
@@ -9,13 +10,12 @@ import React, { Suspense, lazy } from 'react'
 const IndexPage = async () => { 
 
   
-
+  revalidatePath('/')
 
 
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URI}/public`,{
-    next:{
-      "revalidate":3600
-    }
+  
+    cache:'no-store'
   })
   const data = await res.json();
   if(data.code ===404){
