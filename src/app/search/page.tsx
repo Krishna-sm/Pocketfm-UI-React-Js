@@ -9,7 +9,7 @@ import { SearchUrl } from '../../../constant';
 import ErrorComponent from '@/components/ErrorComponent';
 import { cookieData } from '../../../constant.service'; 
 const Card = ({ slug, image, title }: { slug?: string, image:string, title:string })=>{
-  return <Link href={`/novels/${slug}`} className='w-[97%] mx-auto  flex gap-x-3 items-start py-2   font-[PoppinsRegular] transition-all duration-300'>
+  return <Link prefetch href={`/novels/${slug}`} className='w-[97%] mx-auto  flex gap-x-3 items-start py-2   font-[PoppinsRegular] transition-all duration-300'>
     <img src={image}  className='w-[60px]'/>
     <div className="flex flex-col justify-between px-4 w-full">
       <h1 className="heading text-xl">{title}</h1>
