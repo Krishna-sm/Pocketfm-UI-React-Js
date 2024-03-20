@@ -40,6 +40,7 @@ export default function RootLayout({
   <meta name="robots" content="index, follow" />
   <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="language" content="English" />
+          <link rel="icon" type="image/x-icon" href="/image.ico"/>
   <meta name="revisit-after" content="1 days" />
   <meta name="author" content="the Devil" />
       <body className={inter.className}>

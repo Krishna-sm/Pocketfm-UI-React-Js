@@ -4,7 +4,8 @@ export const TestImage = "https://djhonz7dexnot.cloudfront.net/89b51c7637b25ebe1
 export const localstorage_auth ="auth-token"
 
 
-export const private_route = ['/profile','/admin']
+export const private_route = ['/profile', '/admin']
+export const public_route = ['/login']
 
 
 export const SearchUrl = (url: string) => process.env.NEXT_PUBLIC_BACKEND_URI + url

@@ -11,9 +11,13 @@ import { useRouter } from 'next/navigation';
 import { useLoginUserMutation,useVerifyOtpMutation } from '@/redux/queries/Auth.query';
 import { localstorage_auth } from '../../../../constant';
 import { useAddTokenMutation } from '@/redux/queries/SessionsNovel.query';
+import { UserSelector } from '@/redux/slices/User.slice';
+import { useSelector } from 'react-redux';
+import AlreadyLogged from '@/components/AlreadyLogged';
 
 const Login = () => {
   const router = useRouter();
+  const UserData = useSelector(UserSelector)
 
   const [isEmailSend,setIsEmailSend] = useState(false);
 const [msg,setMsg] = useState<{type:'error' | 'success' | string,msg:string}>({
@@ -30,6 +34,10 @@ const [msg,setMsg] = useState<{type:'error' | 'success' | string,msg:string}>({
   const [LoginUser,LoginUserResponse]  = useLoginUserMutation({})
   const [VerifyOTP,VerifyOTPResponse]  = useVerifyOtpMutation({})
   const [AddToken,AddTokenResponse] = useAddTokenMutation({})
+
+  if (UserData){
+    return <AlreadyLogged/>
+  }
 
   const onSubmitHandler  = async(e:{email:string},{resetForm}:any,isReset=true)=>{
     try {

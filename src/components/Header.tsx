@@ -18,7 +18,7 @@ const HeaderComponent = () => {
   return (
     <>
       <header className={`py-4 w-full shadow-sm ${pathname.startsWith('/admin') && 'shadow-md'} mb-3`}>
-                                    <nav className="w-[98%] md:w-[90%] mx-auto flex justify-between items-center">
+                                    <nav className="w-[92%] md:w-[90%] mx-auto flex justify-between items-center">
                                         <Link href={'/'} className='  text-xl font-normal select-none'>@theDevilst</Link>
           <Link href={'/search'} id='search' className={`w-[50%] border max-[527px]:hidden flex justify-between py-2 items-center px-3 rounded-lg overflow-hidden ${pathname.startsWith("/search") || pathname.startsWith( '/admin' )?'hidden':''} `}>
             <span className='text-zinc-500 select-none'>Search Something</span>

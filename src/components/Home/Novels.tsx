@@ -6,6 +6,7 @@ import { IoIosShareAlt } from "react-icons/io";
 // Import css files 
 import { Loader } from '../Loader';
 import Link from 'next/link';
+import { GoArrowRight } from "react-icons/go";
 
 const NovelCard = ({ data }: { data: { image: string, slug: string, title: string }})=>{
 
@@ -40,6 +41,9 @@ const NovelsComponents = ({ novels }: { novels: { image: string, slug: string, t
           <section className="text-gray-600 body-font w-full lg:w-[90%] mx-auto">
   <div className="container px-5 py-5 mx-auto">
     <div className="flex flex-wrap -m-4">
+              <div className="w-full flex justify-end py-4 lg:py-2">
+              <Link href={'/novels'} className="font-[PoppinsRegular] flex items-center  px-4 gap-x-2 text-xs lg:text-sm  text-blue-500">Browse More <GoArrowRight/> </Link>
+              </div>
                      
             <Marquee className={'gap-x-2   '} pauseOnHover autoFill={novels.length>=10} key={new Date().getTime()} 
                     //   @ts-ignore
