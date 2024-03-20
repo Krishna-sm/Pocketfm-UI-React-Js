@@ -8,6 +8,8 @@ import ErrorComponent from '@/components/ErrorComponent';
 import { Loader } from '@/components/Loader';
 import ListImage from '@/assets/images/list.svg'
 import YouTube, { YouTubeProps } from 'react-youtube';
+import Heart from 'react-animated-heart';
+import VideoLike from '@/components/Videos/VideoLike';
 const Videopage = ({ params }: { params: { videoSlug: string, slug :string}}) => {   
 
     const opts: YouTubeProps['opts'] = {
@@ -36,7 +38,7 @@ const Videopage = ({ params }: { params: { videoSlug: string, slug :string}}) =>
     const {  isError,isLoading,data }:any = useGetPublicNovelBySlugWithVideoSlugQuery({ slug: params.slug, videoSlug: params.videoSlug })
 
     const Chatresponse:any = useGetVideoChatQuery({ slug: params.slug, videoSlug: params.videoSlug })
-    const [status,setStatus] = useState('');
+  
  
 
     
@@ -58,7 +60,7 @@ const Videopage = ({ params }: { params: { videoSlug: string, slug :string}}) =>
         return <Loader/>
     }
 
-    const onClickLike = (v:string)=>setStatus(v)
+    // const onClickLike = (v:string)=>setStatus(v)
 
     return (
         <section className='min-h-screen  w-full flex  flex-col md:flex-row items-start'>
@@ -71,10 +73,11 @@ const Videopage = ({ params }: { params: { videoSlug: string, slug :string}}) =>
 
                 </div>
                     <div  id="content" className="px-3 my-5 py-6 flex flex-col gap-y-5 max-h-[50vh] md:h-[80vh] overflow-auto relative">
-                    <div className="flex justify-between py-2 px-2">  <h1 className="text-2xl ">{params.videoSlug}</h1>
-                                <div className="flex items-center gap-x-4">
-                            <span> {status !== 'like' ? <AiOutlineLike onClick={() => onClickLike('like')} className='text-xl md:text-3xl' /> : <AiFillLike onClick={() => onClickLike('like')} className='text-xl md:text-3xl text-[--selection-color]' />}10</span> 
-                            <span> {status !== 'dislike' ? <AiOutlineDislike onClick={() => onClickLike('dislike')} className='text-xl md:text-3xl' /> : <AiFillDislike onClick={() => onClickLike('dislike')} className='text-xl md:text-3xl text-[--selection-color]' />}10</span> 
+                    <div className="flex justify-between py-2 px-2 items-center">  <h1 className="text-2xl ">{params.videoSlug}</h1>
+                                <div className="flex items-center justify-center gap-x-4">
+                            <VideoLike isLike={data?.isLike} />
+                            {/* <span> {status !== 'like' ? <AiOutlineLike onClick={() => onClickLike('like')} className='text-xl md:text-3xl' /> : <AiFillLike onClick={() => onClickLike('like')} className='text-xl md:text-3xl text-[--selection-color]' />}10</span> 
+                            <span> {status !== 'dislike' ? <AiOutlineDislike onClick={() => onClickLike('dislike')} className='text-xl md:text-3xl' /> : <AiFillDislike onClick={() => onClickLike('dislike')} className='text-xl md:text-3xl text-[--selection-color]' />}10</span>  */}
                                 </div>
                     </div>
                     <p className=' selection:bg-indigo-500' dangerouslySetInnerHTML={{ __html: data.video?.desc }} /> 

@@ -5,7 +5,7 @@ import { localstorage_auth } from '../../../constant'
 // Define a service using a base URL and expected endpoints
 export const PublicNovelApi = createApi({
     reducerPath: 'PublicNovelApi',
-    tagTypes:["getNovelBySlugAndVideoSlug"],
+    tagTypes:["getNovelBySlugAndVideoSlug","getNovel"],
     baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_BACKEND_URI }),
     endpoints: (builder) => ({
         getPublicNovelBySlugWithVideoSlug: builder.query < string, { slug:string, videoSlug:string }>({
@@ -15,7 +15,8 @@ export const PublicNovelApi = createApi({
                 headers: {
                     'Authorization': 'Bearer ' + localStorage.getItem(localstorage_auth)
                 }
-            })
+            }),
+            providesTags: ['getNovel']
         }),
         addVideochat: builder.mutation<string, { slug: string, videoSlug: string,comment:string }>({
             query: (obj) => ({
@@ -40,9 +41,21 @@ export const PublicNovelApi = createApi({
             providesTags: ['getNovelBySlugAndVideoSlug']
         }),
 
+        addVideoLike: builder.mutation<string, { slug: string, videoSlug: string }>({
+            query: (obj) => ({
+                url: `/public/novel/${obj.slug}/${obj.videoSlug}/like`,
+                method: 'POST',
+                body: { },
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem(localstorage_auth)
+                }
+            }),
+            invalidatesTags: ['getNovel']
+        }),
+
     }),
 })
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const {  useGetPublicNovelBySlugWithVideoSlugQuery ,  useAddVideochatMutation, useGetVideoChatQuery } = PublicNovelApi
+export const {  useGetPublicNovelBySlugWithVideoSlugQuery ,  useAddVideochatMutation, useGetVideoChatQuery , useAddVideoLikeMutation } = PublicNovelApi
