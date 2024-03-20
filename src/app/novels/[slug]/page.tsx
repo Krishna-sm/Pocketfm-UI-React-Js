@@ -4,10 +4,17 @@ import React from 'react'
 import { SearchUrl } from '../../../../constant'
 import GoBack from '@/components/reuseable/GoBack'
 import ErrorComponent from '@/components/ErrorComponent'
+import { cookies } from 'next/headers'
 
 const NovelPage = async({ params }:{params:{slug:string}}) => {
 
+  const cookiesData = cookies()
+  const token = await cookiesData.get('auth-token')?.value
+
   const res = await fetch(SearchUrl(`/public/novel/${params.slug}`),{
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
    cache:'no-store'
   })
 

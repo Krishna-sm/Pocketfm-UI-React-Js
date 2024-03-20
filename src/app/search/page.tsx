@@ -7,7 +7,7 @@ import { LiaVideoSolid } from "react-icons/lia";
 import { PiEyeLight } from "react-icons/pi";
 import { SearchUrl } from '../../../constant';
 import ErrorComponent from '@/components/ErrorComponent';
-import { cookieData } from '../../../constant.service'; 
+import { cookies } from 'next/headers';
 const Card = ({ slug, image, title }: { slug?: string, image:string, title:string })=>{
   return <Link prefetch href={`/novels/${slug}`} className='w-[97%] mx-auto  flex gap-x-3 items-start py-2   font-[PoppinsRegular] transition-all duration-300'>
     <img src={image}  className='w-[60px]'/>
@@ -30,12 +30,19 @@ type dataProp= {
 
 const SearchPage = async({ searchParams }: { searchParams :{query:string}}) => {
   
- 
+  const cookiesData = cookies()
+
+  const token = await cookiesData.get('auth-token')?.value
 
 
   let data: dataProp ={} ;
         if(searchParams.query){
           const res = await fetch(SearchUrl(`/public/search?query=${searchParams.query}`),{
+
+            headers: {
+              'Authorization': 'Bearer ' + token
+            },
+
            cache:'no-store'
           })
           data = await res.json()

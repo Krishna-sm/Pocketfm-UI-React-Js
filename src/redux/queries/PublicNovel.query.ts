@@ -11,7 +11,10 @@ export const PublicNovelApi = createApi({
         getPublicNovelBySlugWithVideoSlug: builder.query < string, { slug:string, videoSlug:string }>({
             query: (obj) => ({
                 url: `/public/novel/${obj.slug}/${obj.videoSlug}`,
-                method: 'GET'
+                method: 'GET',
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem(localstorage_auth)
+                }
             })
         }),
         addVideochat: builder.mutation<string, { slug: string, videoSlug: string,comment:string }>({
