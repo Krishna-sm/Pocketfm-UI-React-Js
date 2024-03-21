@@ -59,7 +59,7 @@ const [msg,setMsg] = useState<{type:'error' | 'success' | string,msg:string}>({
       toast.success(data.msg)
       setMsg({
         type: 'success',
-        msg: data.msg+" "+data.otp
+        msg: data.msg
       })
       if(isReset){
 
