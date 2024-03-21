@@ -35,8 +35,9 @@ const ProfileComponent = () => {
                 <div className="py-3 w-full flex justify-center items-center">
                     <FaUserCircle className='text-9xl font-thin' />
                 </div>
-                <div className="py-3 w-full flex justify-center items-center">
-                    <h1 className='text-4xl font-[JostBlack] ' >Hey, <span className='capitalize font-[JostBlack] select-none'>{userData?.email?.split("@")[0]}</span> </h1>
+                <div className="py-3 w-full flex justify-center items-center flex-col">
+                    <h1 className='text-4xl font-[PoppinsRegular] ' >Hey, <span className='capitalize font-[PoppinsRegular] select-none'>{userData?.name}</span> </h1>
+                    <p className="text-lg text-zinc-400 font-[PoppinsRegular] select">{userData?.email?.split("@")[0]}</p>
 
                 </div>
 

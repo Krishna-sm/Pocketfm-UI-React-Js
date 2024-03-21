@@ -6,7 +6,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { localstorage_auth, private_route, public_route } from '../../constant';
-import { setUser, UserSelector } from '@/redux/slices/User.slice';
+import { removeUser, setUser, UserSelector } from '@/redux/slices/User.slice';
 import { usePathname, useRouter } from 'next/navigation';
 
 const MainLayout = ({children}:{children:React.ReactNode}) => {
@@ -55,24 +55,60 @@ const pathname = usePathname()
       })()
     }
   }, [pathname])
-// const fechuse=async(e:StorageEvent)=>{ 
-//   if (e.newValue === localstorage_auth || e.key === localstorage_auth){
-//     const token = localStorage.getItem(localstorage_auth) || ''
 
-//     await FetchUser(token); 
-//   }
+  // const fechuse = async (e: MessageEvent) => {
+  //   if (e.data.key === localstorage_auth && e.data.newValue) {
+  //     const token = e.data.newValue;
 
-// }
+  //     if (!userData) {
+  //       try {
+  //         await FetchUser(token);
+  //       } catch (error) {
+  //         console.error('Error fetching user:', error);
+  //       }
+  //     }
+  //   } else {
+  //     dispatch(removeUser({}));
+  //   }
+  // };
 
-   
+  const fechuse = async () => {
+    const token = localStorage.getItem(localstorage_auth) ||'';
 
-//   useEffect(() => {
-//     window.addEventListener('storage', fechuse)
-//         return ()=>{
-//           window.removeEventListener('storage', fechuse)
-//         }
-//   },[])
+    if (token) {
+      if (!userData) {
+        try {
+          await FetchUser(token);
+        } catch (error) {
+          console.error('Error fetching user:', error);
+        }
+      }
+    } else {
+      dispatch(removeUser({}));
+    }
+  };
 
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      fechuse();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []);
+  // useEffect(() => {
+  //   const broadcastChannel = new BroadcastChannel('auth_channel');
+
+  //   broadcastChannel.onmessage = fechuse;
+
+  //   return () => {
+  //     broadcastChannel.close();
+  //   };
+  // }, []);
 
 
 

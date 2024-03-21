@@ -36,6 +36,7 @@ const [msg,setMsg] = useState<{type:'error' | 'success' | string,msg:string}>({
   const [AddToken,AddTokenResponse] = useAddTokenMutation({})
 
   if (UserData){
+    router.push("/")
     return <AlreadyLogged/>
   }
 
@@ -116,13 +117,23 @@ const [msg,setMsg] = useState<{type:'error' | 'success' | string,msg:string}>({
       toast.error(error?.message)
     }
   }
- 
+
+
+  const onClickGoogleLogin = ()=>{
+    // Specify the properties of the popup window
+    const popupWidth = 600;
+    const popupHeight = 800;
+    const popupOptions = `width=${popupWidth},height=${popupHeight},left=${(window.innerWidth - popupWidth) / 2},top=${(window.innerHeight - popupHeight) / 2},resizable=yes,scrollbars=yes`;
+    window.open(process.env.NEXT_PUBLIC_BACKEND_URI + "/auth/google", 'popup', popupOptions)
+  }
+
+
   return (
     <>    
 
             <div className=" w-full transition-all duration-300 md:w-1/2 mx-auto shadow-md p-10 rounded-sm">
                 <div className="flex flex-col gap-y-3 w-full lg:w-1/2 mx-auto">
-          <button className=' text-lg transition-all duration-300 inline-flex gap-x-4 items-center border rounded-lg px-5 py-3'> <FcGoogle className='text-2xl' />    login with google</button>
+          <button onClick={onClickGoogleLogin}  className=' text-lg transition-all duration-300 inline-flex gap-x-4 items-center border rounded-lg px-5 py-3'> <FcGoogle className='text-2xl' />    login with google</button>
               <div className="flex items-center">
             <hr className='w-full' /> <span className='text-nowrap px-2'>Or Email</span><hr  className='w-full'/>
               </div>
