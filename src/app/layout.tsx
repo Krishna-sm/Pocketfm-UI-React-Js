@@ -41,6 +41,8 @@ export default function RootLayout({
   <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="language" content="English" />
           <link rel="icon" type="image/x-icon" href="/image.ico"/>
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6662431350906006"
+     crossOrigin="anonymous"></script>
   <meta name="revisit-after" content="1 days" />
   <meta name="author" content="the Devil" />
       <body className={inter.className}>
